@@ -34,16 +34,19 @@ const imageToInput = async (image, numChannels) => {
 
 
 (async () => {
+    // Change this
     const imagePath = 'input.jpg'
     const modelPath = './outputs/edsr_baseline_x4'
 
-
-
+    // Different model use different format
+    // NCHW vs NHWC
     let pixel_max_one = false
     if (modelPath.match(/carn|dbpn|esrgan|frsr|natsr|rrdb/)) {
         pixel_max_one = true
     }
 
+    // channel_first = True
+    // [0, 1] vs [0, 255]
     let channel_first = true
     if (modelPath.match(/4pp_eusr|eusr|frsr|natsr/)) {
         channel_first = false

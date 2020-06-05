@@ -40,7 +40,10 @@ model_path = sys.argv[1]
 img_path = sys.argv[2]
 output_path = sys.argv[3]
 
+# Different model use different format
+# NCHW vs NHWC
 channel_first = True
+# [0, 1] vs [0, 255]
 pixel_max_one = False
 
 if 'carn' in model_path:
