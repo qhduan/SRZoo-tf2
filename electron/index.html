@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Super Resolution</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <style>
+      #loading {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, .7);
+        visibility: hidden;
+      }
+      #loading-text {
+        position: fixed;
+        top: 50%;
+        text-align: center;
+        margin-top: -20px;
+        width: 100vw;
+        font-size: 20px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Image Scale / Fix</h1>
+    <input id="input" type="file" />
+    <button id="clean">Clean</button>
+    <div id="content"></div>
+    <div id="loading">
+      <div id="loading-text">Loading</div>
+    </div>
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+  </body>
+</html>

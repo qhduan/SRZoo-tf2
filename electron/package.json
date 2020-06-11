@@ -1,0 +1,47 @@
+{
+  "name": "electron-fiddle",
+  "productName": "electron-fiddle",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "qhduan",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "@tensorflow/tfjs-node": "*",
+    "electron-context-menu": "^2.0.1",
+    "jpeg-js": "*"
+  },
+  "devDependencies": {
+    "electron": "^9.0.3"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "my_new_app"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}
