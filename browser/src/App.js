@@ -5,7 +5,7 @@ const jpeg = require('jpeg-js')
 const myWorker = new Worker('worker.js')
 myWorker.onmessage = (e) => {
     console.log('Message received from worker', e.data)
-    drawImage(e.data, false, 'Super Resolution Image')
+    drawImage(e.data, false, 'Super Resolution Image', '#img2')
 }
 
 
@@ -16,8 +16,7 @@ function fixPixel(v) {
     return v
 }
 
-
-async function drawImage(obj, mul=false, text='') {
+async function drawImage(obj, mul=false, text='', place='#img1') {
     const height = obj.height
     const width = obj.width
     const data = obj.data
@@ -25,8 +24,10 @@ async function drawImage(obj, mul=false, text='') {
     const container = document.createElement('div')
 
     const canvas = document.createElement('canvas')
+
     canvas.width = width
     canvas.height = height
+    canvas.style.width = '50vw'
     const context = canvas.getContext('2d')
     const imageData = new ImageData(width, height)
     const buffer = new Uint8ClampedArray(width * height * 4)
@@ -48,14 +49,15 @@ async function drawImage(obj, mul=false, text='') {
     imageData.data.set(buffer)
     context.putImageData(imageData, 0, 0)
     if (mul) {
-        container.style.width = `${width * 2}px`
-        container.style.height = `${height * 2}px`
-        canvas.style.transform = 'scale(2)'
-        canvas.style.transformOrigin = '0px 0px'
+        // container.style.width = `${width * 2}px`
+        // container.style.height = `${height * 2}px`
+        // canvas.style.transform = 'scale(2)'
+        // canvas.style.transformOrigin = '0px 0px'
+        // container.style.width = '50vw'
     }
     container.innerHTML = `<p>${text}</p>`
     container.appendChild(canvas)
-    document.querySelector('body').appendChild(container)
+    document.querySelector(place).appendChild(container)
 }
 
 
@@ -67,7 +69,7 @@ class App extends React.Component {
         reader.onload = async (event) => {
             const buf = event.target.result
             const pixels = jpeg.decode(buf, true)
-            console.log(pixels)
+            // console.log(pixels)
             drawImage(pixels, true, 'Original Image')
             myWorker.postMessage(pixels)
         }

@@ -30,7 +30,8 @@ onmessage = async (e) => {
     console.log('Message received from main script', e.data)
     let input = await imageToInput(e.data, 3)
     const model = await tf.loadGraphModel('carn_x2_js/model.json')
-    console.log('input', input)
+    // const model = await tf.loadGraphModel('frsr_x4_js/model.json')
+    // console.log('input', input)
     // carn setting
     let pixel_max_one = true
     let channel_first = true
@@ -55,7 +56,7 @@ onmessage = async (e) => {
     const width = out.shape[2]
     const data = out.dataSync()
     const ret = {data, height, width}
-    console.log('ret', ret)
+    // console.log('ret', ret)
 
     postMessage(ret)
 }
