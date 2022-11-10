@@ -15,7 +15,7 @@
     "jpeg-js": "*"
   },
   "devDependencies": {
-    "electron": "^9.0.3"
+    "electron": "^18.3.7"
   },
   "config": {
     "forge": {
